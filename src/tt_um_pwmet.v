@@ -15,7 +15,7 @@ module tt_um_pwmet (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 );
-    pwm c (
+    pwm #(.bits(4)) C (
         .clk(ui_in[0]),
         .rst(ui_in[1]),
         .sw(ui_in[5:2]),
