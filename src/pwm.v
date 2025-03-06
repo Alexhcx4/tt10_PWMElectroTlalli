@@ -7,18 +7,18 @@ module pwm(
     output reg pwm
     );
     
-    reg [7:0] counter = 8'b0; // Contador de 8 bits
+    reg [7:0] counter = 8'b00000000; // Contador de 8 bits
     reg [7:0] duty_cycle; // Ciclo de trabajo calculado (0-255)
 
 // Proceso para controlar el contador y generar el PWM
 always @(posedge clk or posedge rst) begin
     if (rst) begin
-        counter <= 8'b0; // Resetear el contador
+        counter <= 8'b00000000; // Resetear el contador
     end else begin
-        if (counter == 8'd255) begin // Reiniciar el contador al alcanzar el máximo
-            counter <= 8'b0;
-        end else begin
-            counter <= counter + 1;
+        counter <= counter + 1;
+        if (counter == 8'b11111111) begin // Reiniciar el contador al alcanzar el máximo
+            counter <= 8'b00000000;
+            
         end
     end
 end
